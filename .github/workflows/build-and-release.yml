@@ -1,11 +1,11 @@
 name: Build and Release
 on:
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - 'main'
-  #   tags:
-  #     - '*'
+  push:
+    branches:
+      - 'main'
+    tags:
+      - '*'
       
 env:
   REGISTRY: ghcr.io
@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       meta-tag: ${{ steps.meta.outputs.tags }}
+      meta-label: ${{ steps.meta.outputs.labels }}
     permissions:
       contents: read
       packages: write
@@ -75,15 +76,17 @@ jobs:
           Limits.CPU: 500m
           Host: remotefalcon.dev
           SubdomainHost: '*.remotefalcon.dev'
-          
+          HOST_ENV: test
+          VERSION: ${{ needs.build.outputs.meta-label }}
+          CONTROL_PANEL_API: https://remotefalcon.dev/remote-falcon-control-panel
+          VIEWER_API: https://remotefalcon.dev/remote-falcon-viewer
+          DATADOG_CLIENT_TOKEN: ${{ secrets.DATADOG_CLIENT_TOKEN }}
       - name: Install doctl 
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-
       - name: Save DigitalOcean kubeconfig
         run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 4fee5fb4-939b-4d7a-8eb0-1b31115a74dc
-
       - name: Kubectl apply
         run: kubectl apply -f ./k8s/manifest.yml
   release-production:
@@ -111,14 +114,16 @@ jobs:
           Limits.CPU: 750m
           Host: remotefalcon.com
           SubdomainHost: '*.remotefalcon.com'
-          
+          HOST_ENV: production
+          VERSION: ${{ needs.build.outputs.meta-label }}
+          CONTROL_PANEL_API: https://remotefalcon.com/remote-falcon-control-panel
+          VIEWER_API: https://remotefalcon.com/remote-falcon-viewer
+          DATADOG_CLIENT_TOKEN: ${{ secrets.DATADOG_CLIENT_TOKEN }}
       - name: Install doctl 
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-
       - name: Save DigitalOcean kubeconfig
         run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 4fee5fb4-939b-4d7a-8eb0-1b31115a74dc
-
       - name: Kubectl apply
         run: kubectl apply -f ./k8s/manifest.yml
