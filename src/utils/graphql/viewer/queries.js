@@ -1,11 +1,13 @@
 import { gql } from '@apollo/client';
 
+// eslint-disable-next-line import/prefer-default-export
 export const GET_SHOW = gql`
-  query @api(name: viewer) {
+  query {
     getShow {
       showSubdomain
       playingNow
       playingNext
+      playingNextFromSchedule
       preferences {
         viewerControlEnabled
         viewerControlMode
@@ -74,11 +76,5 @@ export const GET_SHOW = gql`
         visitDateTime
       }
     }
-  }
-`;
-
-export const ACTIVE_VIEWER_PAGE = gql`
-  query @api(name: viewer) {
-    activeViewerPage
   }
 `;
