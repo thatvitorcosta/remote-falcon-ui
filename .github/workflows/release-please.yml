@@ -94,6 +94,7 @@ jobs:
           VERSION: ${{ needs.release-please.outputs.tag_name }}
           CONTROL_PANEL_API: https://remotefalcon.dev/remote-falcon-control-panel
           VIEWER_API: https://remotefalcon.dev/remote-falcon-viewer
+          REMOTE_FALCON_GATEWAY: https://remotefalcon.dev/remote-falcon-gateway
           DATADOG_CLIENT_TOKEN: ${{ secrets.DATADOG_CLIENT_TOKEN }}
 
       - name: Install doctl
@@ -140,6 +141,7 @@ jobs:
           VERSION: ${{ needs.release-please.outputs.tag_name }}
           CONTROL_PANEL_API: https://remotefalcon.com/remote-falcon-control-panel
           VIEWER_API: https://remotefalcon.com/remote-falcon-viewer
+          REMOTE_FALCON_GATEWAY: https://remotefalcon.com/remote-falcon-gateway
           DATADOG_CLIENT_TOKEN: ${{ secrets.DATADOG_CLIENT_TOKEN }}
 
       - name: Install doctl
