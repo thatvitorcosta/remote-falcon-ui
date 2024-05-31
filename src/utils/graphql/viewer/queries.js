@@ -67,6 +67,9 @@ export const GET_SHOW = gql`
           name
           displayName
         }
+        sequenceGroup {
+          name
+        }
         votes
         lastVoteTime
         ownerVoted
