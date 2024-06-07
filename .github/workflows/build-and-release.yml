@@ -52,6 +52,11 @@ jobs:
     needs: [build-and-push]
     runs-on: ubuntu-latest
     steps:
+      - name: Get current date
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+          format: "YYYY.MM.DD"
       - id: repository_string
         uses: ASzc/change-string-case-action@v6
         with:
@@ -76,7 +81,7 @@ jobs:
           Host: remotefalcon.dev
           SubdomainHost: '*.remotefalcon.dev'
           HOST_ENV: test
-          VERSION: ${{ needs.release-please.outputs.tag_name }}
+          VERSION: ${{ steps.date.outputs.time }}
           CONTROL_PANEL_API: https://remotefalcon.dev/remote-falcon-control-panel
           VIEWER_API: https://remotefalcon.dev/remote-falcon-viewer
           REMOTE_FALCON_GATEWAY: https://remotefalcon.dev/remote-falcon-gateway
@@ -99,6 +104,11 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
+      - name: Get current date
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+          format: "YYYY.MM.DD"
       - id: repository_string
         uses: ASzc/change-string-case-action@v6
         with:
@@ -123,7 +133,7 @@ jobs:
           Host: remotefalcon.com
           SubdomainHost: '*.remotefalcon.com'
           HOST_ENV: prod
-          VERSION: ${{ needs.release-please.outputs.tag_name }}
+          VERSION: ${{ steps.date.outputs.time }}
           CONTROL_PANEL_API: https://remotefalcon.com/remote-falcon-control-panel
           VIEWER_API: https://remotefalcon.com/remote-falcon-viewer
           REMOTE_FALCON_GATEWAY: https://remotefalcon.com/remote-falcon-gateway
