@@ -56,7 +56,7 @@ const Sidebar = ({ window }) => {
         <Stack direction="row" justifyContent="center">
           <Typography variant="h4" align="center">
             <a href="https://www.patreon.com/RemoteFalcon" target="_blank" rel="noreferrer">
-              <img src="https://remotefalcon.com/patreon-icon-png-29.jpg" alt="become-a-patron" width="270" />
+              <img src="https://icon-library.com/images/patreon-icon-png/patreon-icon-png-29.jpg" alt="become-a-patron" width="270" />
             </a>
           </Typography>
         </Stack>
@@ -67,7 +67,7 @@ const Sidebar = ({ window }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="https://remotefalcon.com/Paypal.png" alt="donate-with-paypal" width="275" />
+            <img src="https://raw.githubusercontent.com/aha999/DonateButtons/master/Paypal.png" alt="donate-with-paypal" width="275" />
           </a>
         </Stack>
 
