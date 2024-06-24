@@ -1,5 +1,6 @@
+import { Buffer } from 'buffer';
+
 import { StatusResponse } from '../../utils/enum';
-import { GET_SHOW } from '../../utils/graphql/controlPanel/queries';
 
 export const deleteAccountService = (deleteAccountMutation, callback) => {
   deleteAccountMutation({

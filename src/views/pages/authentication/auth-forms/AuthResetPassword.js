@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer';
+
 import { useCallback, useEffect, useState } from 'react';
 
 import { useLazyQuery, useMutation } from '@apollo/client';
