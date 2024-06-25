@@ -52,14 +52,6 @@ const controlPanel = {
       url: '/control-panel/shows-map',
       icon: IconMap,
       breadcrumbs: false
-    },
-    {
-      id: 'patron-wall',
-      title: 'Patron Wall',
-      type: 'item',
-      url: '/control-panel/patron-wall',
-      icon: IconMan,
-      breadcrumbs: false
     }
   ]
 };

@@ -69,9 +69,6 @@ const AppBar = ({ ...others }) => {
               <Logo />
             </Typography>
             <Stack direction="row" sx={{ display: { xs: 'none', sm: 'block' } }} spacing={2}>
-              <Button id="appbar-patron-wall" color="inherit" component={Link} href="/patron-wall" target="_blank">
-                Patron Wall
-              </Button>
               <Button id="appbar-documentation" color="inherit" component={Link} href="https://docs.remotefalcon.com" target="_blank">
                 Documentation
               </Button>
@@ -90,14 +87,6 @@ const AppBar = ({ ...others }) => {
                 {drawerToggle && (
                   <Box sx={{ width: 'auto' }} role="presentation" onClick={drawerToggler(false)} onKeyDown={drawerToggler(false)}>
                     <List>
-                      <Link style={{ textDecoration: 'none' }} href="/patron-wall" target="_blank">
-                        <ListItemButton component="a">
-                          <ListItemIcon>
-                            <IconMan />
-                          </ListItemIcon>
-                          <ListItemText primary="Patron Wall" />
-                        </ListItemButton>
-                      </Link>
                       <Link
                         style={{ textDecoration: 'none' }}
                         href="https://github.com/whitesoup12/remote-falcon-tracker/wiki/Remote-Falcon-Wiki"
