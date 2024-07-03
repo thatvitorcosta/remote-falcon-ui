@@ -34,6 +34,11 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get current date
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+          format: "YYYY.MM.DD"
       - name: Build and push image
         uses: docker/build-push-action@v5
         with:
@@ -55,11 +60,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
-      - name: Get current date
-        id: date
-        uses: Kaven-Universe/github-action-current-date-time@v1
-        with:
-          format: "YYYY.MM.DD"
       - id: repository_string
         uses: ASzc/change-string-case-action@v6
         with:
