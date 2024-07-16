@@ -1,15 +1,22 @@
-import { useEffect, useCallback } from 'react';
 import * as React from 'react';
 
-import { Grid, Link, Stack, Typography, Divider, Box } from '@mui/material';
+import { Grid, Link, Stack, Typography, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import ReactGA from 'react-ga4';
 
 import SubCard from 'ui-component/cards/SubCard';
 
-import { gridSpacing } from '../../../../store/constant';
-
 const DashboardSponsor = () => {
   const theme = useTheme();
+
+  const goToSponsor = () => {
+    ReactGA.event({
+      category: 'Sponsor Click',
+      action: 'YPS Click',
+      label: 'YPS Click'
+    });
+    window.open('https://yourpixelstore.com/', '_blank').focus();
+  };
 
   return (
     <Grid item xs={12} md={12}>
@@ -20,7 +27,7 @@ const DashboardSponsor = () => {
           </Typography>
         </Stack>
         <Stack direction="row" spacing={2} justifyContent="center">
-          <Link href="https://yourpixelstore.com/" target="_blank">
+          <Link onClick={goToSponsor}>
             <Box
               component="img"
               sx={{ width: 250 }}

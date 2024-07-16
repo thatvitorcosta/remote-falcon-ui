@@ -2,6 +2,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 import { PostHogProvider } from 'posthog-js/react';
 import { createRoot } from 'react-dom/client';
+import ReactGA from 'react-ga4';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import '_mockApis';
@@ -15,6 +16,8 @@ import { store } from 'store';
 
 import 'assets/scss/style.scss';
 import { Environments } from './utils/enum';
+
+ReactGA.initialize('YOUR_TRACKING_ID');
 
 const posthogOptions = {
   api_host: 'https://us.i.posthog.com'

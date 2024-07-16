@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { styled } from '@mui/material/styles';
+import ReactGA from 'react-ga4';
 
 import AppBar from 'ui-component/extended/AppBar';
 
@@ -25,21 +26,28 @@ const SecondWrapper = styled('div')(({ theme }) => ({
   }
 }));
 
-const Landing = () => (
-  <>
-    <HeaderWrapper id="home">
-      <AppBar />
-      <Header />
-    </HeaderWrapper>
-    <SecondWrapper>
-      <Feature />
-    </SecondWrapper>
-    <SecondWrapper>
-      <KeyFeature />
-    </SecondWrapper>
-    <SecondWrapper />
-    <Footer />
-  </>
-);
+const Landing = () => {
+  ReactGA.send({
+    hitType: 'pageview',
+    page: '/',
+    title: 'Landing Page'
+  });
+  return (
+    <>
+      <HeaderWrapper id="home">
+        <AppBar />
+        <Header />
+      </HeaderWrapper>
+      <SecondWrapper>
+        <Feature />
+      </SecondWrapper>
+      <SecondWrapper>
+        <KeyFeature />
+      </SecondWrapper>
+      <SecondWrapper />
+      <Footer />
+    </>
+  );
+};
 
 export default Landing;

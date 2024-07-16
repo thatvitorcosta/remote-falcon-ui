@@ -52,6 +52,7 @@ jobs:
             VIEWER_JWT_KEY=${{ secrets.VIEWER_JWT_KEY }}
             GOOGLE_MAPS_KEY=${{ secrets.GOOGLE_MAPS_KEY }}
             PUBLIC_POSTHOG_KEY=${{ secrets.PUBLIC_POSTHOG_KEY }}
+            GA_TRACKING_ID=${{ secrets.GA_TRACKING_ID }}
   release-production:
     name: Release Production
     environment: prod
