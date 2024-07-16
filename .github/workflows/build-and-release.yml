@@ -49,7 +49,6 @@ jobs:
             HOST_ENV=prod
             VERSION=${{ steps.date.outputs.time }}
             REMOTE_FALCON_GATEWAY=https://remotefalcon.com/remote-falcon-gateway
-            DATADOG_CLIENT_TOKEN=${{ secrets.DATADOG_CLIENT_TOKEN }}
             VIEWER_JWT_KEY=${{ secrets.VIEWER_JWT_KEY }}
             GOOGLE_MAPS_KEY=${{ secrets.GOOGLE_MAPS_KEY }}
             PUBLIC_POSTHOG_KEY=${{ secrets.PUBLIC_POSTHOG_KEY }}

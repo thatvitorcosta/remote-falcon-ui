@@ -21,10 +21,6 @@ spec:
         tags.datadoghq.com/env: #{Env}#
         tags.datadoghq.com/service: #{Application}#
     spec:
-      volumes:
-        - name: apmsocketpath
-          hostPath:
-            path: /var/run/datadog/
       containers:
       - name: #{Application}#
         image: #{Image}#
@@ -35,20 +31,8 @@ spec:
           limits:
             memory: #{Limits.Memory}#
             cpu: #{Limits.CPU}#
-        volumeMounts:
-          - name: apmsocketpath
-            mountPath: /var/run/datadog
         ports:
         - containerPort: 3000
-        env:
-        - name: DD_ENV
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/env']
-        - name: DD_SERVICE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels['tags.datadoghq.com/service']
         startupProbe:
           httpGet:
             path: /health.json
