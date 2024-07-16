@@ -6,7 +6,6 @@ import { useLazyQuery, useMutation, useApolloClient } from '@apollo/client';
 import jwtDecode from 'jwt-decode';
 import { PostHogProvider } from 'posthog-js/react';
 import PropTypes from 'prop-types';
-import { useDatadogRum } from 'react-datadog';
 import { useNavigate } from 'react-router-dom';
 
 import { setGraphqlHeaders } from 'index';
@@ -59,8 +58,6 @@ export const JWTProvider = ({ children }) => {
   const [signInQuery] = useLazyQuery(SIGN_IN);
   const [getShowQuery] = useLazyQuery(GET_SHOW);
 
-  const datadogRum = useDatadogRum();
-
   const logout = () => {
     client.clearStore();
     setSession(null);
@@ -82,11 +79,6 @@ export const JWTProvider = ({ children }) => {
             onCompleted: (data) => {
               const showData = { ...data?.getShow };
               showData.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-              datadogRum.setUser({
-                id: showData?.showName,
-                name: `${showData?.userProfile?.firstName} ${showData?.userProfile?.lastName}`,
-                email: showData?.email
-              });
               PostHogProvider.distinctID = showData?.showSubdomain;
               dispatch(
                 startLoginAction({
@@ -128,11 +120,6 @@ export const JWTProvider = ({ children }) => {
           onCompleted: (data) => {
             const showData = { ...data?.getShow };
             showData.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            datadogRum.setUser({
-              id: showData?.showName,
-              name: `${showData?.userProfile?.firstName} ${showData?.userProfile?.lastName}`,
-              email: showData?.email
-            });
             PostHogProvider.distinctID = showData?.showSubdomain;
             dispatch(
               startLoginAction({

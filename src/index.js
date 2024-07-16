@@ -1,7 +1,6 @@
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { PostHogProvider } from 'posthog-js/react';
-import DataDog from 'react-datadog';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -16,6 +15,7 @@ import { store } from 'store';
 
 import 'assets/scss/style.scss';
 import { Environments } from './utils/enum';
+import './instrument';
 
 const posthogOptions = {
   api_host: 'https://us.i.posthog.com'
@@ -56,27 +56,17 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
-  <DataDog
-    applicationId="bd3037df-6473-4ced-ae36-e7ab72461eab"
-    clientToken={process.env.REACT_APP_DATADOG_CLIENT_TOKEN}
-    service="remote-falcon-ui"
-    env={process.env.REACT_APP_HOST_ENV}
-    sessionReplayRecording
-    trackUserInteractions
-    enableExperimentalFeatures={['clickmap']}
-  >
-    <Provider store={store}>
-      <ConfigProvider>
-        <BrowserRouter basename={BASE_PATH}>
-          <ApolloProvider client={client}>
-            <PostHogProvider apiKey={process.env.REACT_APP_PUBLIC_POSTHOG_KEY} options={posthogOptions}>
-              <App />
-            </PostHogProvider>
-          </ApolloProvider>
-        </BrowserRouter>
-      </ConfigProvider>
-    </Provider>
-  </DataDog>,
+  <Provider store={store}>
+    <ConfigProvider>
+      <BrowserRouter basename={BASE_PATH}>
+        <ApolloProvider client={client}>
+          <PostHogProvider apiKey={process.env.REACT_APP_PUBLIC_POSTHOG_KEY} options={posthogOptions}>
+            <App />
+          </PostHogProvider>
+        </ApolloProvider>
+      </BrowserRouter>
+    </ConfigProvider>
+  </Provider>,
   document.getElementById('root')
 );
 

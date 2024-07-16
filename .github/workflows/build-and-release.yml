@@ -93,3 +93,6 @@ jobs:
 
       - name: Kubectl apply
         run: kubectl apply -f ./k8s/manifest.yml
+
+      - name: Kubectl rollout monitor
+        run : kubectl rollout status deployment remote-falcon-ui --namespace remote-falcon
