@@ -3,7 +3,7 @@ import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { registerInstrumentations } from '@opentelemetry/instrumentation';
 import { B3Propagator } from '@opentelemetry/propagator-b3';
 import { Resource } from '@opentelemetry/resources';
-import { WebTracerProvider, ConsoleSpanExporter, SimpleSpanProcessor, BatchSpanProcessor } from '@opentelemetry/sdk-trace-web';
+import { WebTracerProvider, BatchSpanProcessor } from '@opentelemetry/sdk-trace-web';
 import { SEMRESATTRS_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 
 const resource = Resource.default().merge(
@@ -14,12 +14,10 @@ const resource = Resource.default().merge(
 
 const provider = new WebTracerProvider({ resource });
 
-provider.addSpanProcessor(new SimpleSpanProcessor(new ConsoleSpanExporter()));
-
 provider.addSpanProcessor(
   new BatchSpanProcessor(
     new OTLPTraceExporter({
-      url: 'http://signoz-otel-collector.platform.svc.cluster.local:4318/v1/traces'
+      url: 'https://signoz-otel-collector.platform.svc.cluster.local:4318/v1/traces'
     })
   )
 );
