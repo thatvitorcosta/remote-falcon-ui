@@ -17,7 +17,7 @@ import { store } from 'store';
 import 'assets/scss/style.scss';
 import { Environments } from './utils/enum';
 
-ReactGA.initialize('YOUR_TRACKING_ID');
+ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID);
 
 const posthogOptions = {
   api_host: 'https://us.i.posthog.com'
