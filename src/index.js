@@ -15,7 +15,6 @@ import { store } from 'store';
 
 import 'assets/scss/style.scss';
 import { Environments } from './utils/enum';
-import './instrument';
 
 const posthogOptions = {
   api_host: 'https://us.i.posthog.com'
