@@ -78,7 +78,7 @@ const MainLayout = () => {
     dispatch(openDrawer(!matchDownMd));
     const whatsNewDateViewed = window.localStorage.getItem('whatsNew');
     if (!whatsNewDateViewed || newStuffDate > Date.parse(whatsNewDateViewed)) {
-      setWhatsNewOpen(true);
+      setWhatsNewOpen(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchDownMd]);
