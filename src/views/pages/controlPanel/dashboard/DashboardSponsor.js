@@ -27,7 +27,7 @@ const DashboardSponsor = () => {
           </Typography>
         </Stack>
         <Stack direction="row" spacing={2} justifyContent="center">
-          <Link onClick={goToSponsor}>
+          <Link style={{ cursor: 'pointer' }} onClick={goToSponsor}>
             <Box
               component="img"
               sx={{ width: 250 }}
