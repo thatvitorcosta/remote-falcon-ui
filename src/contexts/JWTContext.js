@@ -31,12 +31,10 @@ export const setSession = (serviceToken) => {
     localStorage.setItem('serviceToken', serviceToken);
     setGraphqlHeaders(serviceToken);
     axios.defaults.headers.common.Authorization = `Bearer ${serviceToken}`;
-    axios.defaults.headers.common.Route = 'Control-Panel';
   } else {
     localStorage.removeItem('serviceToken');
     setGraphqlHeaders(null);
     delete axios.defaults.headers.common.Authorization;
-    axios.defaults.headers.common.Route = 'Control-Panel';
   }
 };
 

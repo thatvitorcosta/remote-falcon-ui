@@ -1,5 +1,6 @@
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, ApolloLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { MultiAPILink } from '@habx/apollo-multi-endpoint-link';
 import { PostHogProvider } from 'posthog-js/react';
 import { createRoot } from 'react-dom/client';
 import ReactGA from 'react-ga4';
@@ -23,16 +24,22 @@ const posthogOptions = {
   api_host: 'https://us.i.posthog.com'
 };
 
-const httpLink = createHttpLink({
-  uri: `${process.env.REACT_APP_REMOTE_FALCON_GATEWAY}/graphql`
-});
+const link = ApolloLink.from([
+  new MultiAPILink({
+    endpoints: {
+      controlPanel: process.env.REACT_APP_CONTROL_PANEL_API,
+      viewer: process.env.REACT_APP_VIEWER_API
+    },
+    createHttpLink: () => createHttpLink()
+  })
+]);
 
 const client = new ApolloClient({
   cache: new InMemoryCache({
     addTypename: false
   }),
   // defaultOptions,
-  link: httpLink,
+  link,
   connectToDevTools: process.env.REACT_APP_HOST_ENV === Environments.LOCAL
 });
 
@@ -51,7 +58,7 @@ export function setGraphqlHeaders(serviceToken) {
       }
     }));
   }
-  client.setLink(authLink.concat(httpLink));
+  client.setLink(authLink.concat(link));
 }
 
 const container = document.getElementById('root');

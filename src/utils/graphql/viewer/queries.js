@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 // eslint-disable-next-line import/prefer-default-export
 export const GET_SHOW = gql`
-  query {
+  query @api(name: viewer) {
     getShow {
       showSubdomain
       playingNow

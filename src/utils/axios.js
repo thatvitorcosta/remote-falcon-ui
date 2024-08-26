@@ -4,9 +4,7 @@ import Reactotron from 'reactotron-react-js';
 
 import { Environments } from './enum';
 
-const axiosServices = axios.create({
-  baseURL: process.env.REACT_APP_REMOTE_FALCON_GATEWAY
-});
+const axiosServices = axios.create();
 
 // interceptor for http
 axiosServices.interceptors.response.use(

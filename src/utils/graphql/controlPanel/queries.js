@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const SIGN_IN = gql`
-  query {
+  query @api(name: controlPanel) {
     signIn {
       serviceToken
     }
@@ -9,7 +9,7 @@ export const SIGN_IN = gql`
 `;
 
 export const VERIFY_PASSWORD_RESET_LINK = gql`
-  query ($passwordResetLink: String!) {
+  query ($passwordResetLink: String!) @api(name: controlPanel) {
     verifyPasswordResetLink(passwordResetLink: $passwordResetLink) {
       serviceToken
     }
@@ -17,7 +17,7 @@ export const VERIFY_PASSWORD_RESET_LINK = gql`
 `;
 
 export const GET_SHOW = gql`
-  query {
+  query @api(name: controlPanel) {
     getShow {
       showToken
       email
@@ -120,7 +120,7 @@ export const GET_SHOW = gql`
 `;
 
 export const DASHBOARD_LIVE_STATS = gql`
-  query ($startDate: Long!, $endDate: Long!, $timezone: String) {
+  query ($startDate: Long!, $endDate: Long!, $timezone: String) @api(name: controlPanel) {
     dashboardLiveStats(startDate: $startDate, endDate: $endDate, timezone: $timezone) {
       activeViewers
       totalViewers
@@ -132,7 +132,7 @@ export const DASHBOARD_LIVE_STATS = gql`
   }
 `;
 export const DASHBOARD_STATS = gql`
-  query ($startDate: Long!, $endDate: Long!, $timezone: String) {
+  query ($startDate: Long!, $endDate: Long!, $timezone: String) @api(name: controlPanel) {
     dashboardStats(startDate: $startDate, endDate: $endDate, timezone: $timezone) {
       page {
         date
@@ -186,7 +186,7 @@ export const DASHBOARD_STATS = gql`
 `;
 
 export const SHOWS_ON_MAP = gql`
-  query {
+  query @api(name: controlPanel) {
     showsOnAMap {
       showName
       showLatitude
@@ -196,7 +196,7 @@ export const SHOWS_ON_MAP = gql`
 `;
 
 export const GET_SHOW_BY_SHOW_SUBDOMAIN = gql`
-  query ($showSubdomain: String!) {
+  query ($showSubdomain: String!) @api(name: controlPanel) {
     getShowByShowSubdomain(showSubdomain: $showSubdomain) {
       showToken
       email

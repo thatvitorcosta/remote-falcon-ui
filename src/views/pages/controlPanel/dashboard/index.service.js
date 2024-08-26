@@ -128,7 +128,7 @@ export const sequenceVoteWins = (dashboardStats) => {
 
 const downloadStatsToExcelService = async (timezone) => {
   const response = await axios.post(
-    '/controlPanel/downloadStatsToExcel',
+    `${process.env.REACT_APP_CONTROL_PANEL_API}/controlPanel/downloadStatsToExcel`,
     {
       timezone
     },
