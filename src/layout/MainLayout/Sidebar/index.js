@@ -49,12 +49,13 @@ const Sidebar = ({ window }) => {
         }}
       >
         <MenuList />
-        <Typography variant="h3" align="center" sx={{ mt: 4 }}>
+        <Typography color="secondary" variant="h3" align="center" sx={{ mt: 4, mb: 3 }}>
           Support Remote Falcon
         </Typography>
 
-        <Stack direction="row" justifyContent="center">
-          <Typography variant="h4" align="center">
+        <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
+          <Typography variant="h5" align="center">
+            100% of Patreon support goes directly to keeping Remote Falcon running
             <a href="https://www.patreon.com/RemoteFalcon" target="_blank" rel="noreferrer">
               <img src="https://icon-library.com/images/patreon-icon-png/patreon-icon-png-29.jpg" alt="become-a-patron" width="270" />
             </a>
@@ -62,13 +63,17 @@ const Sidebar = ({ window }) => {
         </Stack>
 
         <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-          <a
-            href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=FFKWA2CFP6JC6&currency_code=USD&source=url"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="https://raw.githubusercontent.com/aha999/DonateButtons/master/Paypal.png" alt="donate-with-paypal" width="275" />
-          </a>
+          <Typography variant="h5" align="center">
+            &quot;Buying a coffee&quot; is a nice way to say thanks and goes directly to the developer
+            <a href="https://www.buymeacoffee.com/remotefalcon" target="_blank" rel="noreferrer">
+              <img
+                src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+                alt="Buy Me A Coffee"
+                width="240"
+                style={{ marginTop: '1em' }}
+              />
+            </a>
+          </Typography>
         </Stack>
 
         <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
