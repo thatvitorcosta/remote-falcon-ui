@@ -87,11 +87,7 @@ const AppBar = ({ ...others }) => {
                 {drawerToggle && (
                   <Box sx={{ width: 'auto' }} role="presentation" onClick={drawerToggler(false)} onKeyDown={drawerToggler(false)}>
                     <List>
-                      <Link
-                        style={{ textDecoration: 'none' }}
-                        href="https://github.com/whitesoup12/remote-falcon-tracker/wiki/Remote-Falcon-Wiki"
-                        target="_blank"
-                      >
+                      <Link style={{ textDecoration: 'none' }} href="https://docs.remotefalcon.com" target="_blank">
                         <ListItemButton component="a">
                           <ListItemIcon>
                             <IconBook />

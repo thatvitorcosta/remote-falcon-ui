@@ -102,7 +102,7 @@ const CreateViewerPageModal = ({ setCreateViewerPageOpen, editNewViewerPage }) =
     };
     await _.forEach(defaultViewerPages, async (defaultViewerPage) => {
       const viewerPage = await newAxios.get(
-        `https://raw.githubusercontent.com/whitesoup12/remote-falcon-page-templates/main/templates/${defaultViewerPage.id}.html`,
+        `https://raw.githubusercontent.com/Remote-Falcon/remote-falcon-page-templates/main/templates/${defaultViewerPage.id}.html`,
         config
       );
       defaultViewerPage.content = viewerPage.data;

@@ -9,23 +9,23 @@ export const getRemoteViewerPageTemplatesFromGithubService = async () => {
     }
   };
   const theOG = await newAxios.get(
-    'https://raw.githubusercontent.com/whitesoup12/remote-falcon-page-templates/main/templates/the-og.html',
+    'https://raw.githubusercontent.com/Remote-Falcon/remote-falcon-page-templates/main/templates/the-og.html',
     config
   );
   const purpleHalloween = await newAxios.get(
-    'https://raw.githubusercontent.com/whitesoup12/remote-falcon-page-templates/main/templates/purple-halloween.html',
+    'https://raw.githubusercontent.com/Remote-Falcon/remote-falcon-page-templates/main/templates/purple-halloween.html',
     config
   );
   const redAndWhite = await newAxios.get(
-    'https://raw.githubusercontent.com/whitesoup12/remote-falcon-page-templates/main/templates/red-and-white.html',
+    'https://raw.githubusercontent.com/Remote-Falcon/remote-falcon-page-templates/main/templates/red-and-white.html',
     config
   );
   const onAir = await newAxios.get(
-    'https://raw.githubusercontent.com/whitesoup12/remote-falcon-page-templates/main/templates/on-air.html',
+    'https://raw.githubusercontent.com/Remote-Falcon/remote-falcon-page-templates/main/templates/on-air.html',
     config
   );
   const lls = await newAxios.get(
-    'https://raw.githubusercontent.com/whitesoup12/remote-falcon-page-templates/main/templates/lumos-light-show.html',
+    'https://raw.githubusercontent.com/Remote-Falcon/remote-falcon-page-templates/main/templates/lumos-light-show.html',
     config
   );
   viewerPages.push({ key: 1, title: 'The OG by Rick Harris', content: theOG.data });

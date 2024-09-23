@@ -85,7 +85,7 @@ const Faqs = () => {
                   <br />
                   <br />
                   For more details, be sure to check out the{' '}
-                  <a href="https://github.com/whitesoup12/remote-falcon-tracker/wiki/Remote-Falcon-Wiki" target="_blank" rel="noreferrer">
+                  <a href="https://docs.remotefalcon.com" target="_blank" rel="noreferrer">
                     Remote Falcon Wiki
                   </a>
                 </Typography>
