@@ -145,7 +145,7 @@ const JukeboxSettings = ({ setShowLinearProgress }) => {
                 <InfoTwoToneIcon
                   onClick={() =>
                     window.open(
-                      'https://docs.remotefalcon.com/docs/docs/control-panel/remote-falcon-settings#prevent-multiple-votes',
+                      'https://docs.remotefalcon.com/docs/docs/control-panel/remote-falcon-settings#prevent-multiple-requests',
                       '_blank',
                       'noreferrer'
                     )
