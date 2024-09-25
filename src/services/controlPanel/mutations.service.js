@@ -1,6 +1,7 @@
 import { Buffer } from 'buffer';
 
 import { StatusResponse } from '../../utils/enum';
+import { showAlert } from '../../views/pages/globalPageHelpers';
 
 export const deleteAccountService = (deleteAccountMutation, callback) => {
   deleteAccountMutation({
@@ -236,11 +237,13 @@ export const saveShowService = (updatedShow, updateShowMutation, callback) => {
         toast: { message: 'User Profile Saved' }
       });
     },
-    onError: () => {
-      callback({
-        success: false,
-        toast: { alert: 'error' }
-      });
+    onError: (error) => {
+      if (error?.message === StatusResponse.SHOW_EXISTS) {
+        callback({
+          success: false,
+          toast: { message: 'That email or show name already exists', alert: 'error' }
+        });
+      }
     }
     // refetchQueries: [{ query: GET_SHOW, awaitRefetchQueries: true }]
   });
