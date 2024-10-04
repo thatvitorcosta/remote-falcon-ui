@@ -18,7 +18,14 @@ import { store } from 'store';
 import 'assets/scss/style.scss';
 import { Environments } from './utils/enum';
 
-ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID);
+ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID, {
+  gtagOptions: {
+    custom_map: {
+      dimension1: 'dimension1',
+      event_label: 'event_label'
+    }
+  }
+});
 
 const posthogOptions = {
   api_host: 'https://us.i.posthog.com'

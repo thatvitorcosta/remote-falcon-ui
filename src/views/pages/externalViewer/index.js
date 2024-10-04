@@ -152,7 +152,7 @@ const ExternalViewerPage = () => {
       ReactGA.event({
         category: 'Viewer Interaction',
         action: 'Add Sequence to Queue',
-        label: 'Add Sequence to Queue'
+        label: sequenceName
       });
       if (show?.preferences?.enableGeolocation) {
         await setViewerLocation();
@@ -192,7 +192,7 @@ const ExternalViewerPage = () => {
       ReactGA.event({
         category: 'Viewer Interaction',
         action: 'Vote for Sequence',
-        label: 'Vote for Sequence'
+        label: sequenceName
       });
       if (show?.preferences?.enableGeolocation) {
         await setViewerLocation();
