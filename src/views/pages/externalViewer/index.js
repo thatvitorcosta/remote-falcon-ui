@@ -149,10 +149,13 @@ const ExternalViewerPage = () => {
   const addSequenceToQueue = useCallback(
     async (e) => {
       const sequenceName = e.target.attributes.getNamedItem('data-key') ? e.target.attributes.getNamedItem('data-key').value : '';
+      const sequenceDisplayName = e.target.attributes.getNamedItem('data-key-2')
+        ? e.target.attributes.getNamedItem('data-key-2').value
+        : '';
       ReactGA.event({
         category: 'Viewer Interaction',
         action: 'Add Sequence to Queue',
-        label: sequenceName
+        label: sequenceDisplayName
       });
       if (show?.preferences?.enableGeolocation) {
         await setViewerLocation();
@@ -189,10 +192,13 @@ const ExternalViewerPage = () => {
   const voteForSequence = useCallback(
     async (e) => {
       const sequenceName = e.target.attributes.getNamedItem('data-key') ? e.target.attributes.getNamedItem('data-key').value : '';
+      const sequenceDisplayName = e.target.attributes.getNamedItem('data-key-2')
+        ? e.target.attributes.getNamedItem('data-key-2').value
+        : '';
       ReactGA.event({
         category: 'Viewer Interaction',
         action: 'Vote for Sequence',
-        label: sequenceName
+        label: sequenceDisplayName
       });
       if (show?.preferences?.enableGeolocation) {
         await setViewerLocation();
@@ -287,7 +293,12 @@ const ExternalViewerPage = () => {
               const votingListArtistClassname = `cell-vote-playlist-artist cell-vote-playlist-artist-${sequence.key}`;
               sequencesElement.push(
                 <>
-                  <div className={votingListClassname} onClick={(e) => voteForSequence(e)} data-key={sequence.name}>
+                  <div
+                    className={votingListClassname}
+                    onClick={(e) => voteForSequence(e)}
+                    data-key={sequence.name}
+                    data-key-2={sequence.displayName}
+                  >
                     {sequenceImageElement}
                     {sequence.displayName}
                     <div className={votingListArtistClassname}>{sequence.artist}</div>
@@ -358,7 +369,12 @@ const ExternalViewerPage = () => {
             const jukeboxListArtistClassname = `jukebox-list-artist jukebox-list-artist-${sequence.key}`;
             sequencesElement.push(
               <>
-                <div className={jukeboxListClassname} onClick={(e) => addSequenceToQueue(e)} data-key={sequence.name}>
+                <div
+                  className={jukeboxListClassname}
+                  onClick={(e) => addSequenceToQueue(e)}
+                  data-key={sequence.name}
+                  data-key-2={sequence.displayName}
+                >
                   {sequenceImageElement}
                   {sequence.displayName}
                   <div className={jukeboxListArtistClassname}>{sequence.artist}</div>
