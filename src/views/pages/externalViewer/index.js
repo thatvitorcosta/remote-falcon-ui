@@ -608,13 +608,13 @@ const ExternalViewerPage = () => {
 
   useInterval(() => {
     getShow();
-    updateActiveViewersMutation({
-      context: {
-        headers: {
-          Route: 'Viewer'
-        }
-      }
-    }).then();
+    // updateActiveViewersMutation({
+    //   context: {
+    //     headers: {
+    //       Route: 'Viewer'
+    //     }
+    //   }
+    // }).then();
   }, 2000);
 
   useInterval(async () => {
@@ -624,7 +624,6 @@ const ExternalViewerPage = () => {
   useInterval(async () => {
     if (nowPlaying !== show?.playingNow) {
       const playingNowSequence = _.find(show?.sequences, (sequence) => sequence?.name === show?.playingNow);
-      console.log(playingNowSequence?.duration);
       setNowPlaying(show?.playingNow);
       setNowPlayingTimer(playingNowSequence?.duration - 2);
     }
