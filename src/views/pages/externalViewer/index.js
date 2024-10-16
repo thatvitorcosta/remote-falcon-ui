@@ -78,63 +78,72 @@ const ExternalViewerPage = () => {
         ReactGA.event({
           category: 'Viewer Interaction',
           action: 'Request Vote Success',
-          label: 'Request Vote Success'
+          label: 'Request Vote Success',
+          event_label: 'Request Vote Success'
         });
       } else if (response?.error?.message === 'NAUGHTY') {
         // Do nothing, say nothing
         ReactGA.event({
           category: 'Viewer Interaction',
           action: 'Request Vote Naughty',
-          label: 'Request Vote Naughty'
+          label: 'Request Vote Naughty',
+          event_label: 'Request Vote Naughty'
         });
       } else if (response?.error?.message === 'SEQUENCE_REQUESTED') {
         viewerPageMessageElements.requestPlaying.current = viewerPageMessageElements?.requestPlaying?.block;
         ReactGA.event({
           category: 'Viewer Interaction',
           action: 'Request Vote Sequence Requested',
-          label: 'Request Vote Sequence Requested'
+          label: 'Request Vote Sequence Requested',
+          event_label: 'Request Vote Sequence Requested'
         });
       } else if (response?.error?.message === 'INVALID_LOCATION') {
         viewerPageMessageElements.invalidLocation.current = viewerPageMessageElements?.invalidLocation?.block;
         ReactGA.event({
           category: 'Viewer Interaction',
           action: 'Request Vote Invalid Location',
-          label: 'Request Vote Invalid Location'
+          label: 'Request Vote Invalid Location',
+          event_label: 'Request Vote Invalid Location'
         });
       } else if (response?.error?.message === 'QUEUE_FULL') {
         viewerPageMessageElements.queueFull.current = viewerPageMessageElements?.queueFull?.block;
         ReactGA.event({
           category: 'Viewer Interaction',
           action: 'Request Vote Queue Full',
-          label: 'Request Vote Queue Full'
+          label: 'Request Vote Queue Full',
+          event_label: 'Request Vote Queue Full'
         });
       } else if (response?.error?.message === 'INVALID_CODE') {
         viewerPageMessageElements.invalidLocationCode.current = viewerPageMessageElements?.invalidLocationCode?.block;
         ReactGA.event({
           category: 'Viewer Interaction',
           action: 'Request Vote Invalid Code',
-          label: 'Request Vote Invalid Code'
+          label: 'Request Vote Invalid Code',
+          event_label: 'Request Vote Invalid Code'
         });
       } else if (response?.error?.message === 'ALREADY_VOTED') {
         viewerPageMessageElements.alreadyVoted.current = viewerPageMessageElements?.alreadyVoted?.block;
         ReactGA.event({
           category: 'Viewer Interaction',
           action: 'Request Vote Already Voted',
-          label: 'Request Vote Already Voted'
+          label: 'Request Vote Already Voted',
+          event_label: 'Request Vote Already Voted'
         });
       } else if (response?.error?.message === 'ALREADY_REQUESTED') {
         viewerPageMessageElements.alreadyRequested.current = viewerPageMessageElements?.alreadyRequested?.block;
         ReactGA.event({
           category: 'Viewer Interaction',
           action: 'Request Vote Already Requested',
-          label: 'Request Vote Already Requested'
+          label: 'Request Vote Already Requested',
+          event_label: 'Request Vote Already Requested'
         });
       } else {
         viewerPageMessageElements.requestFailed.current = viewerPageMessageElements?.requestFailed?.block;
         ReactGA.event({
           category: 'Viewer Interaction',
           action: 'Request Vote Failed',
-          label: 'Request Vote Failed'
+          label: 'Request Vote Failed',
+          event_label: 'Request Vote Failed'
         });
       }
       setTimeout(() => {
@@ -155,7 +164,8 @@ const ExternalViewerPage = () => {
       ReactGA.event({
         category: 'Viewer Interaction',
         action: 'Add Sequence to Queue',
-        label: sequenceDisplayName
+        label: sequenceDisplayName,
+        event_label: sequenceDisplayName
       });
       if (show?.preferences?.enableGeolocation) {
         await setViewerLocation();
@@ -198,7 +208,8 @@ const ExternalViewerPage = () => {
       ReactGA.event({
         category: 'Viewer Interaction',
         action: 'Vote for Sequence',
-        label: sequenceDisplayName
+        label: sequenceDisplayName,
+        event_label: sequenceDisplayName
       });
       if (show?.preferences?.enableGeolocation) {
         await setViewerLocation();
@@ -568,7 +579,8 @@ const ExternalViewerPage = () => {
         ReactGA.event({
           category: 'Viewer Interaction',
           action: 'Viewer Page View',
-          label: 'Viewer Page View'
+          label: 'Viewer Page View',
+          event_label: 'Viewer Page View'
         });
         setLoading(false);
       },
