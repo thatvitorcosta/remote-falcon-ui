@@ -1,5 +1,5 @@
 import { Box, Grid } from '@mui/material';
-import ReactGA from 'react-ga4';
+import mixpanel from 'mixpanel-browser';
 
 import { gridSpacing } from 'store/constant';
 
@@ -8,10 +8,8 @@ import DashboardHeader from './DashboardHeader';
 import DashboardSponsor from './DashboardSponsor';
 
 const Dashboard = () => {
-  ReactGA.send({
-    hitType: 'pageview',
-    page: '/control-panel/dashboard',
-    title: 'Dashboard'
+  mixpanel.track('Page View', {
+    Page: 'Dashboard'
   });
   return (
     <Box sx={{ mt: 2 }}>

@@ -7,9 +7,9 @@ import { TextField } from '@mui/material';
 import htmlToReact from 'html-to-react';
 import sign from 'jwt-encode';
 import _ from 'lodash';
+import mixpanel from 'mixpanel-browser';
 import moment from 'moment';
 import Loading from 'react-fullscreen-loading';
-import ReactGA from 'react-ga4';
 import { Helmet } from 'react-helmet';
 
 import useInterval from 'hooks/useInterval';
@@ -75,66 +75,48 @@ const ExternalViewerPage = () => {
     (response) => {
       if (response?.success) {
         viewerPageMessageElements.requestSuccessful.current = viewerPageMessageElements?.requestSuccessful?.block;
-        ReactGA.event({
-          category: 'Viewer Interaction',
-          action: 'Request Vote Success',
-          label: 'Request Vote Success'
+        mixpanel.track('Viewer Interaction Result', {
+          Result: 'Success'
         });
       } else if (response?.error?.message === 'NAUGHTY') {
         // Do nothing, say nothing
-        ReactGA.event({
-          category: 'Viewer Interaction',
-          action: 'Request Vote Naughty',
-          label: 'Request Vote Naughty'
+        mixpanel.track('Viewer Interaction Result', {
+          Result: 'Naughty'
         });
       } else if (response?.error?.message === 'SEQUENCE_REQUESTED') {
         viewerPageMessageElements.requestPlaying.current = viewerPageMessageElements?.requestPlaying?.block;
-        ReactGA.event({
-          category: 'Viewer Interaction',
-          action: 'Request Vote Sequence Requested',
-          label: 'Request Vote Sequence Requested'
+        mixpanel.track('Viewer Interaction Result', {
+          Result: 'Sequence Already Requested'
         });
       } else if (response?.error?.message === 'INVALID_LOCATION') {
         viewerPageMessageElements.invalidLocation.current = viewerPageMessageElements?.invalidLocation?.block;
-        ReactGA.event({
-          category: 'Viewer Interaction',
-          action: 'Request Vote Invalid Location',
-          label: 'Request Vote Invalid Location'
+        mixpanel.track('Viewer Interaction Result', {
+          Result: 'Invalid Location'
         });
       } else if (response?.error?.message === 'QUEUE_FULL') {
         viewerPageMessageElements.queueFull.current = viewerPageMessageElements?.queueFull?.block;
-        ReactGA.event({
-          category: 'Viewer Interaction',
-          action: 'Request Vote Queue Full',
-          label: 'Request Vote Queue Full'
+        mixpanel.track('Viewer Interaction Result', {
+          Result: 'Queue Full'
         });
       } else if (response?.error?.message === 'INVALID_CODE') {
         viewerPageMessageElements.invalidLocationCode.current = viewerPageMessageElements?.invalidLocationCode?.block;
-        ReactGA.event({
-          category: 'Viewer Interaction',
-          action: 'Request Vote Invalid Code',
-          label: 'Request Vote Invalid Code'
+        mixpanel.track('Viewer Interaction Result', {
+          Result: 'Invalid Code'
         });
       } else if (response?.error?.message === 'ALREADY_VOTED') {
         viewerPageMessageElements.alreadyVoted.current = viewerPageMessageElements?.alreadyVoted?.block;
-        ReactGA.event({
-          category: 'Viewer Interaction',
-          action: 'Request Vote Already Voted',
-          label: 'Request Vote Already Voted'
+        mixpanel.track('Viewer Interaction Result', {
+          Result: 'Already Voted'
         });
       } else if (response?.error?.message === 'ALREADY_REQUESTED') {
         viewerPageMessageElements.alreadyRequested.current = viewerPageMessageElements?.alreadyRequested?.block;
-        ReactGA.event({
-          category: 'Viewer Interaction',
-          action: 'Request Vote Already Requested',
-          label: 'Request Vote Already Requested'
+        mixpanel.track('Viewer Interaction Result', {
+          Result: 'Viewer Already Requested'
         });
       } else {
         viewerPageMessageElements.requestFailed.current = viewerPageMessageElements?.requestFailed?.block;
-        ReactGA.event({
-          category: 'Viewer Interaction',
-          action: 'Request Vote Failed',
-          label: 'Request Vote Failed'
+        mixpanel.track('Viewer Interaction Result', {
+          Result: 'Failed'
         });
       }
       setTimeout(() => {
@@ -152,10 +134,9 @@ const ExternalViewerPage = () => {
       const sequenceDisplayName = e.target.attributes.getNamedItem('data-key-2')
         ? e.target.attributes.getNamedItem('data-key-2').value
         : '';
-      ReactGA.event({
-        category: 'Viewer Interaction',
-        action: 'Add Sequence to Queue',
-        label: sequenceDisplayName
+      mixpanel.track('Viewer Interaction', {
+        Action: 'Add Sequence to Queue',
+        Sequence: sequenceDisplayName
       });
       if (show?.preferences?.enableGeolocation) {
         await setViewerLocation();
@@ -195,10 +176,9 @@ const ExternalViewerPage = () => {
       const sequenceDisplayName = e.target.attributes.getNamedItem('data-key-2')
         ? e.target.attributes.getNamedItem('data-key-2').value
         : '';
-      ReactGA.event({
-        category: 'Viewer Interaction',
-        action: 'Vote for Sequence',
-        label: sequenceDisplayName
+      mixpanel.track('Viewer Interaction', {
+        Action: 'Vote for Sequence',
+        Sequence: sequenceDisplayName
       });
       if (show?.preferences?.enableGeolocation) {
         await setViewerLocation();
@@ -565,10 +545,8 @@ const ExternalViewerPage = () => {
         if (showData?.preferences?.locationCheckMethod === LocationCheckMethod.GEO) {
           setViewerLocation();
         }
-        ReactGA.event({
-          category: 'Viewer Interaction',
-          action: 'Viewer Page View',
-          label: 'Viewer Page View'
+        mixpanel.track('Viewer Page View', {
+          Show_Name: showData?.showName
         });
         setLoading(false);
       },

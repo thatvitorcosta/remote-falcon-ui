@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Grid, Link, Stack, Typography, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import ReactGA from 'react-ga4';
+import mixpanel from 'mixpanel-browser';
 
 import SubCard from 'ui-component/cards/SubCard';
 
@@ -10,10 +10,8 @@ const DashboardSponsor = () => {
   const theme = useTheme();
 
   const goToSponsor = () => {
-    ReactGA.event({
-      category: 'Sponsor Click',
-      action: 'YPS Click',
-      label: 'YPS Click'
+    mixpanel.track('Sponsor Click', {
+      Sponsor: 'YPS'
     });
     window.open('https://yourpixelstore.com/', '_blank').focus();
   };

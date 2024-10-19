@@ -1,9 +1,9 @@
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, ApolloLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { MultiAPILink } from '@habx/apollo-multi-endpoint-link';
+import mixpanel from 'mixpanel-browser';
 import { PostHogProvider } from 'posthog-js/react';
 import { createRoot } from 'react-dom/client';
-import ReactGA from 'react-ga4';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import '_mockApis';
@@ -18,14 +18,12 @@ import { store } from 'store';
 import 'assets/scss/style.scss';
 import { Environments } from './utils/enum';
 
-ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_ID, {
-  gtagOptions: {
-    custom_map: {
-      dimension1: 'dimension1',
-      event_label: 'event_label'
-    }
-  }
-});
+if (process.env.REACT_APP_MIXPANEL_KEY) {
+  mixpanel.init(process.env.REACT_APP_MIXPANEL_KEY);
+} else {
+  mixpanel.init('*');
+  mixpanel.disable();
+}
 
 const posthogOptions = {
   api_host: 'https://us.i.posthog.com'

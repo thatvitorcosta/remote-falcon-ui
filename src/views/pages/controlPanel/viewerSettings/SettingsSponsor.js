@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Grid, Link, Stack, Typography, Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import ReactGA from 'react-ga4';
+import mixpanel from 'mixpanel-browser';
 
 import wlLogo from 'assets/images/WL.png';
 import SubCard from 'ui-component/cards/SubCard';
@@ -11,10 +11,8 @@ const SettingsSponsor = () => {
   const theme = useTheme();
 
   const goToSponsor = () => {
-    ReactGA.event({
-      category: 'Sponsor Click',
-      action: 'Wallys Lights Click',
-      label: 'Wallys Lights Click'
+    mixpanel.track('Sponsor Click', {
+      Sponsor: 'Wallys Lights'
     });
     window.open('https://wallyslights.com', '_blank').focus();
   };

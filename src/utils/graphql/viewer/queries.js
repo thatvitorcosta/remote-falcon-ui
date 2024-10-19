@@ -8,6 +8,7 @@ export const GET_SHOW = gql`
       playingNow
       playingNext
       playingNextFromSchedule
+      showName
       preferences {
         viewerControlEnabled
         viewerControlMode

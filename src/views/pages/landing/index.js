@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { styled } from '@mui/material/styles';
-import ReactGA from 'react-ga4';
+import mixpanel from 'mixpanel-browser';
 
 import AppBar from 'ui-component/extended/AppBar';
 
@@ -27,10 +27,8 @@ const SecondWrapper = styled('div')(({ theme }) => ({
 }));
 
 const Landing = () => {
-  ReactGA.send({
-    hitType: 'pageview',
-    page: '/',
-    title: 'Landing Page'
+  mixpanel.track('Page View', {
+    Page: 'Landing'
   });
   return (
     <>
