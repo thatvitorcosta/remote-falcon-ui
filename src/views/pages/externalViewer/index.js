@@ -136,7 +136,7 @@ const ExternalViewerPage = () => {
         : '';
       mixpanel.track('Viewer Interaction', {
         Action: 'Add Sequence to Queue',
-        Sequence: sequenceDisplayName
+        Sequence: sequenceDisplayName || sequenceName
       });
       if (show?.preferences?.enableGeolocation) {
         await setViewerLocation();
@@ -178,7 +178,7 @@ const ExternalViewerPage = () => {
         : '';
       mixpanel.track('Viewer Interaction', {
         Action: 'Vote for Sequence',
-        Sequence: sequenceDisplayName
+        Sequence: sequenceDisplayName || sequenceName
       });
       if (show?.preferences?.enableGeolocation) {
         await setViewerLocation();
