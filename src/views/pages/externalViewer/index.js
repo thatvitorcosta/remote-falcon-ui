@@ -19,12 +19,7 @@ import { getSubdomain } from 'utils/route-guard/helpers/helpers';
 import { setSession } from '../../../contexts/JWTContext';
 import { addSequenceToQueueService, voteForSequenceService } from '../../../services/viewer/mutations.service';
 import { LocationCheckMethod, ViewerControlMode } from '../../../utils/enum';
-import {
-  ADD_SEQUENCE_TO_QUEUE,
-  INSERT_VIEWER_PAGE_STATS,
-  UPDATE_ACTIVE_VIEWERS,
-  VOTE_FOR_SEQUENCE
-} from '../../../utils/graphql/viewer/mutations';
+import { ADD_SEQUENCE_TO_QUEUE, INSERT_VIEWER_PAGE_STATS, VOTE_FOR_SEQUENCE } from '../../../utils/graphql/viewer/mutations';
 import { GET_SHOW } from '../../../utils/graphql/viewer/queries';
 import { showAlert } from '../globalPageHelpers';
 import { defaultProcessingInstructions, processingInstructions, viewerPageMessageElements } from './helpers/helpers';
@@ -47,7 +42,6 @@ const ExternalViewerPage = () => {
 
   const [getShowQuery] = useLazyQuery(GET_SHOW);
   const [insertViewerPageStatsMutation] = useMutation(INSERT_VIEWER_PAGE_STATS);
-  const [updateActiveViewersMutation] = useMutation(UPDATE_ACTIVE_VIEWERS);
   const [addSequenceToQueueMutation] = useMutation(ADD_SEQUENCE_TO_QUEUE);
   const [voteForSequenceMutation] = useMutation(VOTE_FOR_SEQUENCE);
 
@@ -572,27 +566,13 @@ const ExternalViewerPage = () => {
           date: moment().format('YYYY-MM-DDTHH:mm:ss')
         }
       }).then();
-      updateActiveViewersMutation({
-        context: {
-          headers: {
-            Route: 'Viewer'
-          }
-        }
-      }).then();
     };
 
     init().then();
-  }, [signViewerJwt, getShowForInit, insertViewerPageStatsMutation, updateActiveViewersMutation]);
+  }, [signViewerJwt, getShowForInit, insertViewerPageStatsMutation]);
 
   useInterval(() => {
     getShow();
-    // updateActiveViewersMutation({
-    //   context: {
-    //     headers: {
-    //       Route: 'Viewer'
-    //     }
-    //   }
-    // }).then();
   }, 2000);
 
   useInterval(async () => {
@@ -601,7 +581,7 @@ const ExternalViewerPage = () => {
 
   useInterval(async () => {
     if (nowPlaying !== show?.playingNow) {
-      const playingNowSequence = _.find(show?.sequences, (sequence) => sequence?.name === show?.playingNow);
+      const playingNowSequence = _.find(show?.sequences, (sequence) => sequence?.displayName === show?.playingNow);
       setNowPlaying(show?.playingNow);
       setNowPlayingTimer(playingNowSequence?.duration - 2);
     }

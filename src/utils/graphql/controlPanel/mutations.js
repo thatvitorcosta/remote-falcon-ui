@@ -119,3 +119,9 @@ export const DELETE_NOW_PLAYING = gql`
     deleteNowPlaying
   }
 `;
+
+export const PURGE_STATS = gql`
+  mutation @api(name: controlPanel) {
+    purgeStats
+  }
+`;

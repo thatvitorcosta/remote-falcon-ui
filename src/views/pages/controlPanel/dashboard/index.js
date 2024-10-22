@@ -15,7 +15,6 @@ const Dashboard = () => {
     <Box sx={{ mt: 2 }}>
       <Grid container spacing={gridSpacing}>
         <DashboardSponsor />
-        <DashboardHeader />
         <DashboardCharts />
       </Grid>
     </Box>

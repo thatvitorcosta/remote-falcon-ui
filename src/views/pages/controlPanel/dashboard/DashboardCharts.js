@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import { Grid, TextField, Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -15,6 +15,7 @@ import RFLoadingButton from 'ui-component/RFLoadingButton';
 import { ViewerControlMode } from 'utils/enum';
 import { DASHBOARD_STATS } from 'utils/graphql/controlPanel/queries';
 
+import { PURGE_STATS } from '../../../../utils/graphql/controlPanel/mutations';
 import { showAlertOld } from '../../globalPageHelpers';
 import ApexBarChart from './ApexBarChart';
 import ApexLineChart from './ApexLineChart';
@@ -38,6 +39,8 @@ const DashboardCharts = () => {
 
   const dateMinus7 = new Date();
   dateMinus7.setDate(dateMinus7.getDate() - 7);
+
+  const [purgeStatsMutation] = useMutation(PURGE_STATS);
 
   const [dashboardStatsQuery] = useLazyQuery(DASHBOARD_STATS);
 
@@ -76,6 +79,10 @@ const DashboardCharts = () => {
     };
     init();
   }, [fetchDashboardStats]);
+
+  useEffect(() => {
+    purgeStatsMutation();
+  }, [purgeStatsMutation]);
 
   return (
     <>
