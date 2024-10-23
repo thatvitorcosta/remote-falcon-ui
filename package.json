@@ -58,7 +58,7 @@
     "md5": "^2.3.0",
     "mixpanel-browser": "^2.55.1",
     "moment": "^2.29.4",
-    "moment-timezone": "^0.5.43",
+    "moment-timezone": "^0.5.46",
     "posthog-js": "^1.140.1",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",

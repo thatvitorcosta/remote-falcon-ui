@@ -1,6 +1,6 @@
 import fileDownload from 'js-file-download';
 import _ from 'lodash';
-import moment from 'moment/moment';
+import moment from 'moment-timezone';
 
 import axios from 'utils/axios';
 import { showAlertOld } from 'views/pages/globalPageHelpers';
