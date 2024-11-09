@@ -282,6 +282,13 @@ const ExternalViewerPage = () => {
                       <div className={votingListArtistClassname}>{sequence.artist}</div>
                     </>
                   );
+                } else {
+                  playingNow = (
+                    <>
+                      {sequence.displayName}
+                      <div className={votingListArtistClassname}>{sequence.artist}</div>
+                    </>
+                  );
                 }
               }
 
@@ -293,6 +300,13 @@ const ExternalViewerPage = () => {
                   playingNext = (
                     <>
                       {sequenceImageElement}
+                      {sequence.displayName}
+                      <div className={votingListArtistClassname}>{sequence.artist}</div>
+                    </>
+                  );
+                } else {
+                  playingNext = (
+                    <>
                       {sequence.displayName}
                       <div className={votingListArtistClassname}>{sequence.artist}</div>
                     </>
@@ -388,6 +402,13 @@ const ExternalViewerPage = () => {
                   <div className={jukeboxListArtistClassname}>{sequence.artist}</div>
                 </>
               );
+            } else {
+              playingNow = (
+                <>
+                  {sequence.displayName}
+                  <div className={jukeboxListArtistClassname}>{sequence.artist}</div>
+                </>
+              );
             }
           }
 
@@ -399,6 +420,13 @@ const ExternalViewerPage = () => {
               playingNext = (
                 <>
                   {sequenceImageElement}
+                  {sequence.displayName}
+                  <div className={jukeboxListArtistClassname}>{sequence.artist}</div>
+                </>
+              );
+            } else {
+              playingNext = (
+                <>
                   {sequence.displayName}
                   <div className={jukeboxListArtistClassname}>{sequence.artist}</div>
                 </>
