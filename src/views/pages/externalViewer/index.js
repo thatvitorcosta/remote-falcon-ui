@@ -521,6 +521,15 @@ const ExternalViewerPage = () => {
                         </div>
                       </>
                     );
+                  } else {
+                    jukeboxRequestsElement.push(
+                      <>
+                        <div className="jukebox-queue">
+                          {request?.sequence?.displayName}
+                          <div className={jukeboxListArtistClassname}>{sequence.artist}</div>
+                        </div>
+                      </>
+                    );
                   }
                 }
               });
