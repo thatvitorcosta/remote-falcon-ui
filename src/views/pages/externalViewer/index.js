@@ -248,8 +248,8 @@ const ExternalViewerPage = () => {
     const categoriesPlaced = [];
     let jukeboxRequestsElement = [];
 
-    let playingNow = '';
-    let playingNext = '';
+    let playingNow = <>{show?.playingNow}</>;
+    let playingNext = <>{show?.playingNext}</>;
 
     _.map(show?.sequences, (sequence) => {
       if (sequence.visible && sequence.visibilityCount === 0) {
